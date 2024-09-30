@@ -28,5 +28,9 @@
 		"vite": "^5.0.3",
 		"vitest": "^2.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"p5": "^1.11.0",
+		"p5-svelte": "^3.1.2"
+	}
 }
