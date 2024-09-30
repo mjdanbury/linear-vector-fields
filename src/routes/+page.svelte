@@ -1,34 +1,12 @@
-<script>
-	import P5 from 'p5-svelte';
-	let width = 55;
-	let height = 55;
-
-	const sketch = (p5) => {
-		p5.setup = () => {
-			p5.createCanvas(400, 400);
-		};
-
-		p5.draw = () => {
-			p5.ellipse(p5.width / 2, p5.height / 2, width, height);
-		};
-	};
-</script>
+<div class="header"></div>
 
 <div class="body">
-	<div class="sketch">
-		<P5 {sketch} debug />
-	</div>
-
-	<div class="slider">
-		Width
-		<input type="range" bind:value={width} min="100" max="1000" step="0.01" />
-		{width}
-	</div>
-	<div class="slider">
-		Height
-		<input type="range" bind:value={height} min="100" max="1000" step="0.01" />
-		{height}
-	</div>
+	<h1>p5-Svelte Examples</h1>
+	<ul>
+		<li><a href="/p5-svelte-demo">The demo from the p5-svelte docs</a></li>
+		<li><a href="/p5-draw-docs">Example from the official p5 docs for draw()</a></li>
+		<li><a href="/flow-field">Flow field example from Nature of Code</a></li>
+	</ul>
 </div>
 
 <style>
