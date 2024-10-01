@@ -7,36 +7,24 @@
 	let cols = width / res;
 	let rows = height / res;
 	let a11 = 1;
-	let a12 = 0;
-	let a21 = 0;
+	let a12 = -1;
+	let a21 = 1;
 	let a22 = 1;
 
 	const sketch = (p5) => {
 		p5.setup = () => {
 			p5.createCanvas(400, 400);
-			p5.colorMode(p5.HSB);
 		};
 
 		// p5 variables and functions need to be prefixed since we have not globally imported the namespace. Other than that, everything else works the same :~)
 		p5.draw = () => {
-			// for (let y = 0; y < height; y++) {
-			// 	for (let x = 0; x < width; x++) {
-			// 		let dx = x - width / 2;
-			// 		let dy = y - height / 2;
-			// 		let distance = p5.sqrt(dx * dx + dy * dy);
-			// 		let angle = p5.atan2(dy, dx);
-			// 		let hue = p5.map(angle, -p5.PI, p5.PI, 0, 360);
-
-			// 		p5.stroke(hue, 100, 100);
-			// 		p5.point(x, y);
-			// 	}
-			// }
 			p5.createCanvas(400, 400);
+
 			for (let i = 0; i < cols; i++) {
 				for (let j = 0; j < rows; j++) {
 					let v = p5.createVector(i - cols / 2, j - cols / 2);
 					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
-					// Av.setMag(res / 2);
+					Av.setMag(res / 2);
 					let x = i * res + res / 2;
 					let y = j * res + res / 2;
 
@@ -96,6 +84,7 @@
 	}
 	.controls {
 		text-justify: center;
+		margin-top: 25px;
 	}
 	.matrix {
 		display: grid;
