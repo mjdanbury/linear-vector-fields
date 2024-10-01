@@ -20,16 +20,50 @@
 		p5.draw = () => {
 			p5.createCanvas(400, 400);
 
+			// Calculate the canvas center
+			let centerX = p5.width / 2;
+			let centerY = p5.height / 2;
+
+			// Draw the axes
+			p5.push();
+			p5.stroke(200); // Light grey color for axes
+			p5.strokeWeight(2);
+
+			// Draw x-axis
+			p5.line(0, centerY, p5.width, centerY);
+
+			// Draw y-axis
+			p5.line(centerX, 0, centerX, p5.height);
+
+			// Optional: Add arrow tips to axes
+			let arrowSize = 10;
+
+			// X-axis arrow tip
+			p5.line(p5.width, centerY, p5.width - arrowSize, centerY - arrowSize / 2);
+			p5.line(p5.width, centerY, p5.width - arrowSize, centerY + arrowSize / 2);
+
+			// Y-axis arrow tip
+			p5.line(centerX, 0, centerX - arrowSize / 2, arrowSize);
+			p5.line(centerX, 0, centerX + arrowSize / 2, arrowSize);
+
+			p5.pop();
+
 			for (let i = 0; i < cols; i++) {
 				for (let j = 0; j < rows; j++) {
 					let v = p5.createVector(i - cols / 2, j - cols / 2);
 					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+
 					Av.setMag(res / 2);
-					let x = i * res + res / 2;
-					let y = j * res + res / 2;
+
+					// Calculate the starting point of the vector
+					let x = centerX + (i - cols / 2) * res;
+					let y = centerY + (j - rows / 2) * res;
 
 					let endX = x + Av.x;
 					let endY = y + Av.y;
+
+					// Draw the main line of the arrow
+					p5.stroke(0); // Black color for vectors
 					p5.strokeWeight(1);
 					p5.line(x, y, endX, endY);
 
