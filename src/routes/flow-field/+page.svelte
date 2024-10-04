@@ -12,7 +12,7 @@
 	let a11 = 1;
 	let a12 = -1;
 	let a21 = 0;
-	let a22 = 0;
+	let a22 = -1;
 	let normalize = true;
 	let eigensharpness = 400; // New parameter to control the sharpness of the distinction
 	let nullsharpness = 1;
@@ -55,7 +55,7 @@
 			for (let i = 0; i < backCols; i++) {
 				for (let j = 0; j < backRows; j++) {
 					let v = p5.createVector(i - backCols / 2 + 0.5, -1 * (j - backRows / 2 + 0.5));
-					let Av = p5.createVector(a11 * v.x + a12 * v.y, -1 * (a21 * v.x + a22 * v.y));
+					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
 
 					let x = i * backRes;
 					let y = j * backRes;
@@ -92,12 +92,8 @@
 
 			for (let i = 0; i < cols + 1; i++) {
 				for (let j = 0; j < rows + 1; j++) {
-					let v = p5.createVector(i - cols / 2, -1 * (j - cols / 2));
-					let Av = p5.createVector(a11 * v.x + a12 * v.y, -1 * (a21 * v.x + a22 * v.y));
-
-					// let vectorColor = getColor(Av.mag());
-
-					// console.log(Av);
+					let v = p5.createVector(i - cols / 2, -1 * (j - rows / 2));
+					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
 
 					// Calculate the starting point of the vector
 					let x = centerX + (i - cols / 2) * res;
@@ -110,7 +106,7 @@
 					if (normalize) {
 						Av.setMag(res / 2);
 						endX = x + Av.x;
-						endY = y + Av.y;
+						endY = y - Av.y;
 					} else {
 						endX = x + Av.x * res;
 						endY = y + Av.y * res;
@@ -131,9 +127,9 @@
 						// Calculate arrowhead points
 						let arrowAngle = p5.PI / 6; // 30 degrees
 						let x1 = endX - arrowSize * p5.cos(angle - arrowAngle);
-						let y1 = endY - arrowSize * p5.sin(angle - arrowAngle);
+						let y1 = endY + arrowSize * p5.sin(angle - arrowAngle);
 						let x2 = endX - arrowSize * p5.cos(angle + arrowAngle);
-						let y2 = endY - arrowSize * p5.sin(angle + arrowAngle);
+						let y2 = endY + arrowSize * p5.sin(angle + arrowAngle);
 
 						// Draw arrowhead
 						p5.line(endX, endY, x1, y1);
@@ -168,6 +164,10 @@
 	<p>
 		TODO - It could be nice to scale the lengths of the vetors by tanh(scaleFactor*norm(Av)). To
 		emphasize the fact that these aren't really of uniform length.
+	</p>
+	<p>
+		TODO - Right now, the eigen/null space code seems to be doing the right thing but the vector
+		field is incorrect.
 	</p>
 </div>
 
