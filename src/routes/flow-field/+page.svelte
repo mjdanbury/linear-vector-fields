@@ -11,10 +11,11 @@
 	let backRows = height / backRes;
 	let a11 = 1;
 	let a12 = -1;
-	let a21 = 1;
+	let a21 = 0;
 	let a22 = 0;
 	let normalize = true;
-	let sharpness = 400; // New parameter to control the sharpness of the distinction
+	let eigensharpness = 400; // New parameter to control the sharpness of the distinction
+	let nullsharpness = 1;
 
 	const sketch = (p5) => {
 		p5.setup = () => {
@@ -30,13 +31,13 @@
 			let absCosAngle = Math.abs(cosAngle);
 
 			// Apply a power function to create a sharper distinction
-			let sharpened = Math.pow(absCosAngle, sharpness);
+			let sharpened = Math.pow(absCosAngle, eigensharpness);
 
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
 			let hue = 20; // Blue hue
-			let saturation = sharpened * 100;
-			let brightness = 100;
+			let saturation = sharpened * 20;
+			let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullsharpness * Av.mag()));
 
 			return p5.color(hue, saturation, brightness);
 		};
@@ -53,8 +54,8 @@
 			// Draw colored background
 			for (let i = 0; i < backCols; i++) {
 				for (let j = 0; j < backRows; j++) {
-					let v = p5.createVector(i - backCols / 2 + 0.5, j - backRows / 2 + 0.5);
-					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+					let v = p5.createVector(i - backCols / 2 + 0.5, -1 * (j - backRows / 2 + 0.5));
+					let Av = p5.createVector(a11 * v.x + a12 * v.y, -1 * (a21 * v.x + a22 * v.y));
 
 					let x = i * backRes;
 					let y = j * backRes;
@@ -91,8 +92,8 @@
 
 			for (let i = 0; i < cols + 1; i++) {
 				for (let j = 0; j < rows + 1; j++) {
-					let v = p5.createVector(i - cols / 2, j - cols / 2);
-					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+					let v = p5.createVector(i - cols / 2, -1 * (j - cols / 2));
+					let Av = p5.createVector(a11 * v.x + a12 * v.y, -1 * (a21 * v.x + a22 * v.y));
 
 					// let vectorColor = getColor(Av.mag());
 
@@ -146,7 +147,7 @@
 
 <div class="body">
 	<a href="/">Home</a>
-	<h1>Linear Vector Fields</h1>
+	<h1>A Static Picture of Linear Transformations</h1>
 	<button on:click={() => (normalize = !normalize)}>
 		{#if normalize}
 			Show raw vectors
@@ -164,6 +165,10 @@
 			<input type="number" bind:value={a22} />
 		</div>
 	</div>
+	<p>
+		TODO - It could be nice to scale the lengths of the vetors by tanh(scaleFactor*norm(Av)). To
+		emphasize the fact that these aren't really of uniform length.
+	</p>
 </div>
 
 <style>
