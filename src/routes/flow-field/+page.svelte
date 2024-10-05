@@ -143,7 +143,54 @@
 
 <div class="body">
 	<a href="/">Home</a>
-	<h1>A Static Picture of Linear Transformations</h1>
+	<h1>Linear Algebra in a Single Picture</h1>
+	<h3>Alternative titles:</h3>
+	<ul>
+		<li>A Quick, Visual Introduction to Linear Algebra</li>
+		<li>A Complementary Picture of Linear Algebra</li>
+		<li>A New Picture of Linear Transformations</li>
+	</ul>
+	<p>
+		One of the things that this picture shows is what "Linearity" means. Scaling an input (moving
+		along any line through the origin) simply scales the output (sign + magnitude of output vector
+		changes).
+	</p>
+	<p>
+		This is in contrast to a nonlinear transformation of the plane (show picture of a nonlinear
+		vector field) where things can go off in an entirely different direciton as your input scales.
+	</p>
+	<p>
+		All finite dimensional vector spaces are isomorphic to R^n so this is a great place to build
+		intuition.
+	</p>
+	<p>
+		What else can this picture get us. In almost every introduction to linear algebra I've
+		encountered. The trace is sheepishly defined as "the sum of the main diagonal of a matrix". This
+		presentation shows how the trace appears naturally as the divergence of the vector field
+		associated with a linear transformation
+	</p>
+	<p>
+		Grant's animations are still the best when it comes to getting intuition about how a single
+		linear transformation plays out. Where this one excels I think is building intution about the
+		space of all linear transformations, and how they relate to their matrix representations.
+	</p>
+
+	<p>
+		When learning math, you sometimes get the advice that you just need to keep reading. Sometimes,
+		this is a good and practical option but I don't think it really builds the skills you'd need as
+		a research or careful thinker of any breed.
+	</p>
+	<p>
+		What I like about this is that by playing around with it, you can generate questions that could
+		"chart a course" for the slog that is an intermediate, proof-based linear algebra class. You see
+		patterns and hopefully crave to distill them into rigorous theorems about the structure inherent
+		to linear maps.
+	</p>
+	<p>
+		Even better, these pictures allow you to explore questions that could whet your appetite for a
+		followup course in Lie Theory (sometimes reffered to as Matrix Groups). Thats amazing.
+	</p>
+
 	<button on:click={() => (normalize = !normalize)}>
 		{#if normalize}
 			Show raw vectors
@@ -166,9 +213,10 @@
 		emphasize the fact that these aren't really of uniform length.
 	</p>
 	<p>
-		TODO - Right now, the eigen/null space code seems to be doing the right thing but the vector
-		field is incorrect.
+		TODO - Incorporating the javascript math library to be able to write things like sqrt, pi, etc.
+		would be a nice to have.
 	</p>
+	<p>TODO - Watch Lie Theory series in full to</p>
 </div>
 
 <style>
