@@ -35,7 +35,7 @@
 
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
-			let hue = 20; // Blue hue
+			let hue = 80; // Highlight hue
 			let saturation = sharpened * 20;
 			let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullsharpness * Av.mag()));
 
