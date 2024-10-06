@@ -36,8 +36,8 @@
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
 			let hue = 80; // Highlight hue
-			let saturation = sharpened * 20;
-			let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullsharpness * Av.mag()));
+			let saturation = sharpened * 15;
+			let brightness = 100 * (1 - 0.2 * Math.exp(-1 * nullsharpness * Av.mag()));
 
 			return p5.color(hue, saturation, brightness);
 		};
@@ -189,6 +189,10 @@
 	<p>
 		Even better, these pictures allow you to explore questions that could whet your appetite for a
 		followup course in Lie Theory (sometimes reffered to as Matrix Groups). Thats amazing.
+	</p>
+	<p>
+		Using small multiples to see how an algorithm like row reduction plays out would be fucking
+		sick. As would decompositions like SVD, Similarity transformations, etc.
 	</p>
 
 	<button on:click={() => (normalize = !normalize)}>
