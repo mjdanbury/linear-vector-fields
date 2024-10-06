@@ -13,9 +13,10 @@
 	let a12 = -1;
 	let a21 = 0;
 	let a22 = -1;
-	let normalize = true;
-	let eigensharpness = 400; // New parameter to control the sharpness of the distinction
-	let nullsharpness = 1;
+	let highlight = false;
+	let eigenSharpness = 400; // New parameter to control the sharpness of the distinction
+	let nullSharpness = 1;
+	let lengthScale = 5;
 
 	const sketch = (p5) => {
 		p5.setup = () => {
@@ -31,13 +32,13 @@
 			let absCosAngle = Math.abs(cosAngle);
 
 			// Apply a power function to create a sharper distinction
-			let sharpened = Math.pow(absCosAngle, eigensharpness);
+			let sharpened = Math.pow(absCosAngle, eigenSharpness);
 
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
 			let hue = 80; // Highlight hue
 			let saturation = sharpened * 15;
-			let brightness = 100 * (1 - 0.2 * Math.exp(-1 * nullsharpness * Av.mag()));
+			let brightness = 100 * (1 - 0.2 * Math.exp(-1 * nullSharpness * Av.mag()));
 
 			return p5.color(hue, saturation, brightness);
 		};
@@ -51,18 +52,20 @@
 			let centerX = p5.width / 2;
 			let centerY = p5.height / 2;
 
-			// Draw colored background
-			for (let i = 0; i < backCols; i++) {
-				for (let j = 0; j < backRows; j++) {
-					let v = p5.createVector(i - backCols / 2 + 0.5, -1 * (j - backRows / 2 + 0.5));
-					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+			if (highlight) {
+				// Draw colored background
+				for (let i = 0; i < backCols; i++) {
+					for (let j = 0; j < backRows; j++) {
+						let v = p5.createVector(i - backCols / 2 + 0.5, -1 * (j - backRows / 2 + 0.5));
+						let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
 
-					let x = i * backRes;
-					let y = j * backRes;
+						let x = i * backRes;
+						let y = j * backRes;
 
-					p5.noStroke();
-					p5.fill(getColor(v, Av));
-					p5.rect(x, y, backRes, backRes);
+						p5.noStroke();
+						p5.fill(getColor(v, Av));
+						p5.rect(x, y, backRes, backRes);
+					}
 				}
 			}
 
@@ -94,6 +97,7 @@
 				for (let j = 0; j < rows + 1; j++) {
 					let v = p5.createVector(i - cols / 2, -1 * (j - rows / 2));
 					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+					let lengthAv = Av.mag();
 
 					// Calculate the starting point of the vector
 					let x = centerX + (i - cols / 2) * res;
@@ -103,14 +107,9 @@
 					let endY = y;
 
 					// Scale Av to enhance visability
-					if (normalize) {
-						Av.setMag(res / 2);
-						endX = x + Av.x;
-						endY = y - Av.y;
-					} else {
-						endX = x + Av.x * res;
-						endY = y + Av.y * res;
-					}
+					Av.setMag((Math.tanh(lengthAv / lengthScale) * res) / 2);
+					endX = x + Av.x;
+					endY = y - Av.y;
 
 					// Draw the main line of the arrow
 					p5.stroke(0);
@@ -195,11 +194,11 @@
 		sick. As would decompositions like SVD, Similarity transformations, etc.
 	</p>
 
-	<button on:click={() => (normalize = !normalize)}>
-		{#if normalize}
-			Show raw vectors
+	<button on:click={() => (highlight = !highlight)}>
+		{#if highlight}
+			Remove highlights
 		{:else}
-			Normalize vectors
+			Highlight null / eigenspaces
 		{/if}
 	</button>
 	<div class="sketch"><P5 {sketch} /></div>
@@ -213,14 +212,10 @@
 		</div>
 	</div>
 	<p>
-		TODO - It could be nice to scale the lengths of the vetors by tanh(scaleFactor*norm(Av)). To
-		emphasize the fact that these aren't really of uniform length.
-	</p>
-	<p>
 		TODO - Incorporating the javascript math library to be able to write things like sqrt, pi, etc.
 		would be a nice to have.
 	</p>
-	<p>TODO - Watch Lie Theory series in full to</p>
+	<p>TODO - Watch Lie Theory series in full to brainstorm for writeup.</p>
 </div>
 
 <style>
