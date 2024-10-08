@@ -5,7 +5,7 @@
 	<ul>
 		<li><a href="/p5-svelte-demo">The demo from the p5-svelte docs</a></li>
 		<li><a href="/p5-draw-docs">Example from the official p5 docs for draw()</a></li>
-		<li><a href="/flow-field">Flow field example from Nature of Code</a></li>
+		<li><a href="/flow-field">Linear Vector Fields</a></li>
 	</ul>
 </div>
 

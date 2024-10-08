@@ -1,26 +1,29 @@
 <script>
 	import P5 from 'p5-svelte';
+	// import { evaluate } from 'mathjs'; Postponing for now
 
-	let res = 20;
-	let backRes = 5;
-	let width = 400;
-	let height = 400;
-	let cols = width / res;
-	let rows = height / res;
-	let backCols = width / backRes;
-	let backRows = height / backRes;
-	let a11 = 1;
-	let a12 = -1;
-	let a21 = 0;
-	let a22 = -1;
+	let fieldResolution = 20; // Expose, default to 20
+	let highlightResolution = 5; // Expose, default to 5
+	let width = 400; // Expose, default to 400
+	let height = 400; // Expose, default to 400
+	let cols = width / fieldResolution;
+	let rows = height / fieldResolution;
+	let highlightCols = width / highlightResolution;
+	let highlightRows = height / highlightResolution;
+	let a11 = 1; // Expose
+	let a12 = -1; // Expose
+	let a21 = 0; // Expose
+	let a22 = -1; // Expose
 	let highlight = false;
-	let eigenSharpness = 400; // New parameter to control the sharpness of the distinction
+	let highlightHue = 80; // Expose, default to 80 (light green in HSB)
+	let eigenSharpness = 400;
 	let nullSharpness = 1;
-	let lengthScale = 5;
+	let lengthScale = 7; // Expose, default to 7
+	let arrowSize = 10;
 
 	const sketch = (p5) => {
 		p5.setup = () => {
-			p5.createCanvas(400, 400);
+			p5.createCanvas(width, height);
 			p5.colorMode(p5.HSB, 360, 100, 100);
 		};
 
@@ -36,16 +39,17 @@
 
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
-			let hue = 80; // Highlight hue
-			let saturation = sharpened * 15;
-			let brightness = 100 * (1 - 0.2 * Math.exp(-1 * nullSharpness * Av.mag()));
 
-			return p5.color(hue, saturation, brightness);
+			let saturation = sharpened * 15;
+			let brightness = 100;
+			// let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullSharpness * Av.mag()));
+
+			return p5.color(highlightHue, saturation, brightness);
 		};
 
 		// p5 variables and functions need to be prefixed since we have not globally imported the namespace. Other than that, everything else works the same :~)
 		p5.draw = () => {
-			p5.createCanvas(400, 400);
+			p5.createCanvas(width, height);
 			p5.background(0, 0, 100); // White background in HSB
 
 			// Calculate the canvas center
@@ -54,17 +58,20 @@
 
 			if (highlight) {
 				// Draw colored background
-				for (let i = 0; i < backCols; i++) {
-					for (let j = 0; j < backRows; j++) {
-						let v = p5.createVector(i - backCols / 2 + 0.5, -1 * (j - backRows / 2 + 0.5));
+				for (let i = 0; i < highlightCols; i++) {
+					for (let j = 0; j < highlightRows; j++) {
+						let v = p5.createVector(
+							i - highlightCols / 2 + 0.5,
+							-1 * (j - highlightRows / 2 + 0.5)
+						);
 						let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
 
-						let x = i * backRes;
-						let y = j * backRes;
+						let x = i * highlightResolution;
+						let y = j * highlightResolution;
 
 						p5.noStroke();
 						p5.fill(getColor(v, Av));
-						p5.rect(x, y, backRes, backRes);
+						p5.rect(x, y, highlightResolution, highlightResolution);
 					}
 				}
 			}
@@ -79,9 +86,6 @@
 
 			// Draw y-axis
 			p5.line(centerX, 0, centerX, p5.height);
-
-			// Optional: Add arrow tips to axes
-			let arrowSize = 10;
 
 			// X-axis arrow tip
 			p5.line(p5.width, centerY, p5.width - arrowSize, centerY - arrowSize / 2);
@@ -100,14 +104,14 @@
 					let lengthAv = Av.mag();
 
 					// Calculate the starting point of the vector
-					let x = centerX + (i - cols / 2) * res;
-					let y = centerY + (j - rows / 2) * res;
+					let x = centerX + (i - cols / 2) * fieldResolution;
+					let y = centerY + (j - rows / 2) * fieldResolution;
 
 					let endX = x;
 					let endY = y;
 
 					// Scale Av to enhance visability
-					Av.setMag((Math.tanh(lengthAv / lengthScale) * res) / 2);
+					Av.setMag((Math.tanh(lengthAv / lengthScale) * fieldResolution) / 2);
 					endX = x + Av.x;
 					endY = y - Av.y;
 
@@ -148,6 +152,7 @@
 		<li>A Quick, Visual Introduction to Linear Algebra</li>
 		<li>A Complementary Picture of Linear Algebra</li>
 		<li>A New Picture of Linear Transformations</li>
+		<li>Linear Vector Fields - A Visual Playground for learning Linear Algebra</li>
 	</ul>
 	<p>
 		One of the things that this picture shows is what "Linearity" means. Scaling an input (moving
@@ -198,7 +203,7 @@
 		{#if highlight}
 			Remove highlights
 		{:else}
-			Highlight null / eigenspaces
+			Highlight eigenspaces
 		{/if}
 	</button>
 	<div class="sketch"><P5 {sketch} /></div>
@@ -210,12 +215,32 @@
 			<input type="number" bind:value={a21} />
 			<input type="number" bind:value={a22} />
 		</div>
+		<h4>Determinant: {a11 * a22 - a12 * a21}</h4>
+		<h4>Trace: {a11 + a22}</h4>
 	</div>
 	<p>
 		TODO - Incorporating the javascript math library to be able to write things like sqrt, pi, etc.
 		would be a nice to have.
 	</p>
+	<p>
+		TODO - Perhaps it would be cool to sync the matrix input to the matrix vector product written
+		out so you can see why certain components are/arent changing.
+	</p>
 	<p>TODO - Watch Lie Theory series in full to brainstorm for writeup.</p>
+	<p>
+		TODO - There's no reason I couldn't implement Grant's animation for single transformations. This
+		would be quite a squeeze tho. Is the juice worth it? Perhaps you could have a little play button
+		in one of the corners and it would and it could bounce loop until paused. You wouldn't need to
+		animate the eigenspace highlights as those remains static throughout a transformation :^)
+		ACTUALLY - Idk if this would be all that great. Input density is uniform but output density
+		isn't necessarily so. Space can be stretched / squished. But maybe that's a good thing.
+	</p>
+	<p>
+		TODO - A really neat thing to do would be to have a side by side view of a matrix and its
+		inverse. Play with one and see how the inverse changes. You could do the same thing for a matrix
+		and it's SVD (assuming that exists..)
+	</p>
+	<p>TODO - Making the colors / fonts / layout a little more Tuftean would be pretty cool.</p>
 </div>
 
 <style>
