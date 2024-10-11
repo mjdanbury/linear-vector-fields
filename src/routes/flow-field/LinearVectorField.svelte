@@ -1,6 +1,5 @@
 <script>
 	import P5 from 'p5-svelte';
-	// import { evaluate } from 'mathjs'; Postponing for now
 
 	let {
 		a11,
@@ -12,7 +11,8 @@
 		fieldResolution = 20,
 		vectorScale = 7,
 		highlight = false,
-		highlightHue = 80
+		highlightHue = 80,
+		style = ''
 	} = $props();
 
 	// Drawing params (derived / unexposed)
@@ -44,9 +44,9 @@
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
 
-			let saturation = sharpened * 20;
-			// let brightness = 100;
-			let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullSharpness * Av.mag()));
+			let saturation = sharpened * 30;
+			let brightness = 100;
+			// let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullSharpness * Av.mag()));
 
 			return p5.color(highlightHue, saturation, brightness);
 		};
@@ -148,4 +148,4 @@
 	};
 </script>
 
-<P5 {sketch} />
+<P5 {sketch} parentDivStyle={style} />
