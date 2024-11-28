@@ -2,23 +2,82 @@
 	// import { evaluate } from 'mathjs'; Postponing for now
 	import LinearVectorField from './LinearVectorField.svelte';
 
-	let a11 = $state(1);
-	let a12 = $state(-1);
-	let a21 = $state(0);
-	let a22 = $state(-1);
+	let A = $state([
+		[1, -1],
+		[0, -1]
+	]);
 	let highlight = $state(false);
+	let selected = $state();
 </script>
 
 <div class="body">
 	<a href="/">Home</a>
-	<h1>Linear Algebra in a Single Picture</h1>
-	<h3>Alternative titles:</h3>
-	<ul>
-		<li>A Quick, Visual Introduction to Linear Algebra</li>
-		<li>A Complementary Picture of Linear Algebra</li>
-		<li>A New Picture of Linear Transformations</li>
-		<li>Linear Vector Fields - A Visual Playground for learning Linear Algebra</li>
-	</ul>
+	<h1>Linear Algebra In A Single Picture</h1>
+	<div class="sketch">
+		<div class="field">
+			<LinearVectorField {A} highlight={true} width="300" height="300" fieldResolution="25" />
+		</div>
+	</div>
+	<p>By Matthew Danbury</p>
+	<p>
+		As a math student, I sometimes felt that the definitions I was handed were undermotivated —
+		answers to questions I'd yet to ask. Oftentimes, I would get past these roadblocks by just
+		"stomaching it" and trusting that things would make more sense as I read further along in the
+		textbook and worked some of the exercises. Most of the time they did.
+	</p>
+
+	<p>
+		While this learning method works pretty reliably in the classroom, it utterly fails to
+		generalize to beyond it. Real life problems don't come with some textbook you can just read
+		further along in. Most anything in life worth doing is novel in some way or another and doing it
+		means leaning on your own careful thinking to frame the problem in a way that makes sense to
+		you, and develop a plan of attack. This sort of careful thinking is a skill unto itself, and one
+		that can be honed with practice. Here, I present a way to offer linear algebra students such an
+		opportunity.
+	</p>
+
+	<p>
+		This might not be the best way to understand what an <em>individual</em> linear transformation
+		does per se but I think it is an extaordinarily good way to look at linear transformations
+		<em>as a whole</em>, and generate the kinds of questions that could chart out a first or second
+		course on the topic.
+	</p>
+
+	<p>
+		A course in Linear Algebra typically starts with defining what a vector space is, and proceedes
+		to charactarize transformations between them.
+	</p>
+	<p>
+		This picture is created by the following "rule" at each point in space, draw the vector that
+		that point is mapped to under A. Some caveats we only sample a finite number of points, and we
+		scale the vectors down to improve visibility (I used tanh to map all magnitudes into a finite
+		interval.)
+	</p>
+	<p>
+		It has been noted that the way math is discovered and the way math is taught are often nothing
+		alike. Research mathematicians tackle problems through concrete examples, which can help them
+		develop and hone useful abstractions and strategies for proving more general theorems. Yet open
+		any math textbook, and you'll be presented with a slew of abstract definitions and theorems,
+		followed by concrete exercises. On the other hand, research procedes by toying around with
+		concrete examples to tease out and hone, what the most useful abstractions could be.
+	</p>
+	<p>
+		I'm sure some of this is unavoidable. If you want to move at an effective pace, you can't be
+		expected to completely rediscover entire fields that. The downside is that as a student, I would
+		often feel that the definitions I was handed were undermotivated. Answers to questions I hadn't
+		yet asked.
+	</p>
+	<p>
+		Yet when it comes to linear transformations, they are left with matrices — a computational
+		object — and pushing numbers arond with their pencils.
+	</p>
+
+	<p>
+		For positive determinant matrices, making an orbit around the origin, either the head or the
+		tail of the arrows are consistently pointed outwards. For negative determinant matrices, they
+		flip. Twice.
+	</p>
+	<p>###################################</p>
 	<p>
 		One of the things that this picture shows is what "Linearity" means. Scaling an input (moving
 		along any line through the origin) simply scales the output (sign + magnitude of output vector
@@ -72,67 +131,105 @@
 		the precision required to prove theorems will always be work to develop but seeing the point is
 		priceless.
 	</p>
-	<button on:click={() => (highlight = !highlight)}>
+	<p>
+		One natural observation is that the arrows "follow" one another . A reasonable question might be
+		to ask if there is any operation that corresponds to.
+	</p>
+	<p>
+		A good takeaway from a linear algebra course is that linear transformations do a finite number
+		of things. They can stretch and squish space. They can rotate it. They can flip/invert it. And
+		they can project. And any combinations therein. But thats it.
+	</p>
+	<button onclick={() => (highlight = !highlight)}>
 		{#if highlight}
 			Remove highlights
 		{:else}
 			Highlight eigenspaces
 		{/if}
 	</button>
-	<div class="sketch"><LinearVectorField {a11} {a12} {a21} {a22} {highlight} /></div>
-	<div class="controls">
-		Transformation Matrix
-		<div class="matrix">
-			<input type="number" bind:value={a11} />
-			<input type="number" bind:value={a12} />
-			<input type="number" bind:value={a21} />
-			<input type="number" bind:value={a22} />
+	<div class="sketch">
+		<div class="field">
+			<LinearVectorField {A} {highlight} width="300" height="300" fieldResolution="25" />
 		</div>
-		<h4>Determinant: {a11 * a22 - a12 * a21}</h4>
-		<h4>Trace: {a11 + a22}</h4>
 	</div>
-	<p>
-		TODO - Incorporating the javascript math library to be able to write things like sqrt, pi, etc.
-		would be a nice to have.
-	</p>
-	<p>
-		TODO - Perhaps it would be cool to sync the matrix input to the matrix vector product written
-		out so you can see why certain components are/arent changing.
-	</p>
-	<p>TODO - Watch Lie Theory series in full to brainstorm for writeup.</p>
-	<p>
-		TODO - There's no reason I couldn't implement Grant's animation for single transformations. This
-		would be quite a squeeze tho. Is the juice worth it? Perhaps you could have a little play button
-		in one of the corners and it would and it could bounce loop until paused. You wouldn't need to
-		animate the eigenspace highlights as those remains static throughout a transformation :^)
-		ACTUALLY - Idk if this would be all that great. Input density is uniform but output density
-		isn't necessarily so. Space can be stretched / squished. But maybe that's a good thing.
-	</p>
-	<p>
-		TODO - A really neat thing to do would be to have a side by side view of a matrix and its
-		inverse. Play with one and see how the inverse changes. You could do the same thing for a matrix
-		and it's SVD (assuming that exists..)
-	</p>
-	<p>TODO - Making the colors / fonts / layout a little more Tuftean would be pretty cool.</p>
+	<div class="controls">
+		<p>Transformation Matrix</p>
+		<button
+			onclick={() => {
+				selected = 'a11';
+			}}>{A[0][0]}</button
+		>
+		<button
+			onclick={() => {
+				selected = 'a12';
+			}}>{A[0][1]}</button
+		>
+		<br />
+		<button
+			onclick={() => {
+				selected = 'a21';
+			}}>{A[1][0]}</button
+		>
+		<button
+			onclick={() => {
+				selected = 'a22';
+			}}>{A[1][1]}</button
+		>
+		<br />
+		{#if !selected}
+			<input type="range" disabled={true} />
+		{/if}
+		{#if selected == 'a11'}
+			<input type="range" min="-6" max="6" step="1" bind:value={A[0][0]} />
+		{/if}
+		{#if selected == 'a12'}
+			<input type="range" min="-6" max="6" step="1" bind:value={A[0][1]} />
+		{/if}
+		{#if selected == 'a21'}
+			<input type="range" min="-6" max="6" step="1" bind:value={A[1][0]} />
+		{/if}
+		{#if selected == 'a22'}
+			<input type="range" min="-6" max="6" step="1" bind:value={A[1][1]} />
+		{/if}
+
+		<h4>Determinant: {A[0][0] * A[1][1] - A[0][1] * A[1][0]}</h4>
+		<h4>Trace: {A[0][0] + A[1][1]}</h4>
+	</div>
 </div>
 
 <style>
 	.body {
 		/* background: red; */
-		width: 600px;
+		max-width: 600px;
 		margin: 0 auto;
+		font-size: 16px;
+		font-family: 'Noto Sans Mono', monospace;
+		line-height: 1.45;
+		font-weight: 100;
+		text-rendering: optimizeLegibility;
 	}
 	.sketch {
+		/* background: orange; */
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 	}
 	.controls {
-		text-justify: center;
-		margin-top: 25px;
+		/* text-justify: center;
+		margin-top: 25px; */
 	}
-	.matrix {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr 1fr;
+	.field {
+		/* background: yellow; */
+		margin: 15px;
+		padding: 15px;
+		border-style: solid;
+		border-color: darkgray;
+	}
+
+	@media (max-width: 650px) {
+		.body {
+			/* background: blue; */
+			padding-left: 25px;
+			padding-right: 25px;
+		}
 	}
 </style>

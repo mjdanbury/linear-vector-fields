@@ -2,10 +2,7 @@
 	import P5 from 'p5-svelte';
 
 	let {
-		a11,
-		a12,
-		a21,
-		a22,
+		A,
 		width = 400,
 		height = 400,
 		fieldResolution = 20,
@@ -67,7 +64,7 @@
 							i - highlightCols / 2 + 0.5,
 							-1 * (j - highlightRows / 2 + 0.5)
 						);
-						let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+						let Av = p5.createVector(A[0][0] * v.x + A[0][1] * v.y, A[1][0] * v.x + A[1][1] * v.y);
 
 						let x = i * highlightResolution;
 						let y = j * highlightResolution;
@@ -104,7 +101,7 @@
 			for (let i = 0; i < cols + 1; i++) {
 				for (let j = 0; j < rows + 1; j++) {
 					let v = p5.createVector(i - cols / 2, -1 * (j - rows / 2));
-					let Av = p5.createVector(a11 * v.x + a12 * v.y, a21 * v.x + a22 * v.y);
+					let Av = p5.createVector(A[0][0] * v.x + A[0][1] * v.y, A[1][0] * v.x + A[1][1] * v.y);
 					let lengthAv = Av.mag();
 
 					// Calculate the starting point of the vector
