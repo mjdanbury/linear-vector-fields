@@ -11,8 +11,7 @@
 		fieldResolution = 20,
 		vectorScale = 7,
 		highlight = false,
-		highlightHue = 80,
-		style = ''
+		highlightHue = 80
 	} = $props();
 
 	// Drawing params (derived / unexposed)
@@ -82,8 +81,9 @@
 
 			// Draw the axes
 			p5.push();
-			p5.stroke(80); // Light grey color for axes
-			p5.strokeWeight(2);
+			p5.stroke(50); // Light grey color for axes
+			p5.strokeWeight(1);
+			p5.drawingContext.setLineDash([3, 6]);
 
 			// Draw x-axis
 			p5.line(0, centerY, p5.width, centerY);
@@ -92,12 +92,12 @@
 			p5.line(centerX, 0, centerX, p5.height);
 
 			// X-axis arrow tip
-			p5.line(p5.width, centerY, p5.width - arrowheadSize, centerY - arrowheadSize / 2);
-			p5.line(p5.width, centerY, p5.width - arrowheadSize, centerY + arrowheadSize / 2);
+			// p5.line(p5.width, centerY, p5.width - arrowheadSize, centerY - arrowheadSize / 2);
+			// p5.line(p5.width, centerY, p5.width - arrowheadSize, centerY + arrowheadSize / 2);
 
 			// Y-axis arrow tip
-			p5.line(centerX, 0, centerX - arrowheadSize / 2, arrowheadSize);
-			p5.line(centerX, 0, centerX + arrowheadSize / 2, arrowheadSize);
+			// p5.line(centerX, 0, centerX - arrowheadSize / 2, arrowheadSize);
+			// p5.line(centerX, 0, centerX + arrowheadSize / 2, arrowheadSize);
 
 			p5.pop();
 
@@ -129,7 +129,7 @@
 						let angle = Av.heading();
 
 						// Length of the arrowhead lines
-						let arrowSize = 3;
+						let arrowSize = 3; //* Math.tanh(lengthAv / vectorScale);
 
 						// Calculate arrowhead points
 						let arrowAngle = p5.PI / 6; // 30 degrees
@@ -148,4 +148,4 @@
 	};
 </script>
 
-<P5 {sketch} parentDivStyle={style} />
+<P5 {sketch} />
