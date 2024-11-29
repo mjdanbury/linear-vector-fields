@@ -15,8 +15,9 @@
 	<!-- <p class="date">November 2024</p> -->
 	<h1>Linear Algebra In A Single Picture</h1>
 	<div class="sketch">
-		<div class="field">
-			<LinearVectorField {A} />
+		<div class="hero">
+			<!-- <LinearVectorField {A} /> -->
+			<LinearVectorField {A} width={600} />
 		</div>
 	</div>
 
@@ -205,7 +206,7 @@
 <style>
 	.body {
 		/* background: red; */
-		max-width: 600px;
+		max-width: 650px;
 		margin: 0 auto;
 		font-size: 16px;
 		font-family: 'Noto Sans Mono', monospace;
@@ -237,6 +238,14 @@
 		border-width: 1px;
 	}
 
+	.hero {
+		/* background: yellow; */
+		/* margin: 15px; */
+		padding: 15px;
+		/* border-style: solid; */
+		/* border-width: 1px; */
+	}
+
 	@media (max-width: 650px) {
 		.body {
 			/* background: blue; */
@@ -247,8 +256,6 @@
 			/* background: yellow; */
 			margin: 5px;
 			padding: 5px;
-			border-style: solid;
-			border-width: 1px;
 		}
 	}
 </style>
