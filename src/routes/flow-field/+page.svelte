@@ -199,6 +199,7 @@
 		<h4>Determinant: {A[0][0] * A[1][1] - A[0][1] * A[1][0]}</h4>
 		<h4>Trace: {A[0][0] + A[1][1]}</h4>
 	</div>
+	<div class="footer">Matthew Danbury is a freelance data interactives developer.</div>
 </div>
 
 <style>
@@ -211,6 +212,10 @@
 		line-height: 1.45;
 		font-weight: 100;
 		text-rendering: optimizeLegibility;
+	}
+	h1 {
+		padding-top: 15px;
+		border-top: 1px solid black;
 	}
 	.date {
 		text-align: end;
