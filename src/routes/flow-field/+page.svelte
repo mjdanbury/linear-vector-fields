@@ -11,14 +11,18 @@
 </script>
 
 <div class="body">
-	<a href="/">Home</a>
+	<!-- <a href="/">Home</a> -->
+	<!-- <p class="date">November 2024</p> -->
 	<h1>Linear Algebra In A Single Picture</h1>
 	<div class="sketch">
 		<div class="field">
-			<LinearVectorField {A} highlight={true} width="300" height="300" fieldResolution="25" />
+			<LinearVectorField {A} />
 		</div>
 	</div>
-	<p>By Matthew Danbury</p>
+
+	<p><u>Matthew Danbury</u></p>
+	<!-- <p>November 2024</p> -->
+
 	<p>
 		As a math student, I sometimes felt that the definitions I was handed were undermotivated —
 		answers to questions I'd yet to ask. Oftentimes, I would get past these roadblocks by just
@@ -149,7 +153,7 @@
 	</button>
 	<div class="sketch">
 		<div class="field">
-			<LinearVectorField {A} {highlight} width="300" height="300" fieldResolution="25" />
+			<LinearVectorField {A} {highlight} />
 		</div>
 	</div>
 	<div class="controls">
@@ -208,28 +212,38 @@
 		font-weight: 100;
 		text-rendering: optimizeLegibility;
 	}
+	.date {
+		text-align: end;
+	}
 	.sketch {
 		/* background: orange; */
 		display: flex;
 		justify-content: space-around;
 	}
 	.controls {
-		/* text-justify: center;
-		margin-top: 25px; */
+		text-justify: center;
+		margin-top: 25px;
 	}
 	.field {
 		/* background: yellow; */
 		margin: 15px;
 		padding: 15px;
 		border-style: solid;
-		border-color: darkgray;
+		border-width: 1px;
 	}
 
 	@media (max-width: 650px) {
 		.body {
 			/* background: blue; */
-			padding-left: 25px;
-			padding-right: 25px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.field {
+			/* background: yellow; */
+			margin: 5px;
+			padding: 5px;
+			border-style: solid;
+			border-width: 1px;
 		}
 	}
 </style>

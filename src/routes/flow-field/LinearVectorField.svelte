@@ -3,9 +3,9 @@
 
 	let {
 		A,
-		width = 400,
-		height = 400,
-		fieldResolution = 20,
+		width = 300,
+		height = 300,
+		fieldResolution = 25,
 		vectorScale = 7,
 		highlight = false,
 		highlightHue = 80
