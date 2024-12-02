@@ -6,7 +6,7 @@
 		width = 300,
 		height = 300,
 		fieldResolution = 25,
-		vectorScale = 7,
+		vectorScale = 3,
 		highlight = false,
 		highlightHue = 80
 	} = $props();

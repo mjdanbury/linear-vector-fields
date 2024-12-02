@@ -11,26 +11,23 @@
 </script>
 
 <div class="body">
-	<!-- <a href="/">Home</a> -->
-	<!-- <p class="date">November 2024</p> -->
 	<h1>Linear Algebra In A Single Picture</h1>
 	<div class="sketch">
-		<div class="hero-large">
-			<LinearVectorField {A} width={600} />
+		<div class="hero-lg">
+			<LinearVectorField {A} width={550} />
 		</div>
-		<div class="hero-small">
-			<LinearVectorField {A} width={400} />
+		<div class="hero-md">
+			<LinearVectorField {A} width={450} />
+		</div>
+		<div class="hero-sm">
+			<LinearVectorField {A} width={350} />
 		</div>
 	</div>
-
 	<p><u>Matthew Danbury</u></p>
-	<!-- <p>November 2024</p> -->
-
 	<p>
-		As a math student, I sometimes felt that the definitions I was handed were undermotivated —
-		answers to questions I'd yet to ask. Oftentimes, I would get past these roadblocks by just
-		"stomaching it" and trusting that things would make more sense as I read further along in the
-		textbook and worked some of the exercises. Most of the time they did.
+		Linear transformations map ellipsoids between one another. Specifically, there is a one-to-one
+		correspondnce between oriented ellipsoids in Rn, and linear operators on Rn. The such an
+		ellipsoid represents the linear transformation whcich takes the n-1 sphere to said ellipsoid.
 	</p>
 
 	<p>
@@ -187,16 +184,16 @@
 			<input type="range" disabled={true} />
 		{/if}
 		{#if selected == 'a11'}
-			<input type="range" min="-6" max="6" step="1" bind:value={A[0][0]} />
+			<input type="range" min="-6" max="6" step="0.5" bind:value={A[0][0]} />
 		{/if}
 		{#if selected == 'a12'}
-			<input type="range" min="-6" max="6" step="1" bind:value={A[0][1]} />
+			<input type="range" min="-6" max="6" step="0.5" bind:value={A[0][1]} />
 		{/if}
 		{#if selected == 'a21'}
-			<input type="range" min="-6" max="6" step="1" bind:value={A[1][0]} />
+			<input type="range" min="-6" max="6" step="0.5" bind:value={A[1][0]} />
 		{/if}
 		{#if selected == 'a22'}
-			<input type="range" min="-6" max="6" step="1" bind:value={A[1][1]} />
+			<input type="range" min="-6" max="6" step="0.5" bind:value={A[1][1]} />
 		{/if}
 
 		<h4>Determinant: {A[0][0] * A[1][1] - A[0][1] * A[1][0]}</h4>
@@ -240,14 +237,17 @@
 		border-width: 1px;
 	}
 
-	.hero-large {
+	.hero-lg {
 		/* background: yellow; */
 		/* margin: 15px; */
 		padding: 15px;
 		/* border-style: solid; */
 		/* border-width: 1px; */
 	}
-	.hero-small {
+	.hero-md {
+		display: none;
+	}
+	.hero-sm {
 		display: none;
 	}
 
@@ -262,10 +262,18 @@
 			margin: 5px;
 			padding: 5px;
 		}
-		.hero-large {
+		.hero-lg {
 			display: none;
 		}
-		.hero-small {
+		.hero-md {
+			display: contents;
+		}
+	}
+	@media (max-width: 500px) {
+		.hero-md {
+			display: none;
+		}
+		.hero-sm {
 			display: contents;
 		}
 	}
