@@ -4,14 +4,14 @@
 
 	let A = $state([
 		[1, -1],
-		[0, -1]
+		[-1, -1]
 	]);
 	let highlight = $state(false);
 	let selected = $state();
 </script>
 
 <div class="body">
-	<h1>Linear Algebra In A Single Picture</h1>
+	<h1>A Visual Primer on Linear Algebra</h1>
 	<div class="sketch">
 		<div class="hero-lg">
 			<LinearVectorField {A} width={550} />
@@ -23,11 +23,72 @@
 			<LinearVectorField {A} width={350} />
 		</div>
 	</div>
-	<p><u>Matthew Danbury</u></p>
+	<p>By <a href="https://matthewdanbury.info">Matthew Danbury</a></p>
+
 	<p>
-		Linear transformations map ellipsoids between one another. Specifically, there is a one-to-one
-		correspondnce between oriented ellipsoids in Rn, and linear operators on Rn. The such an
-		ellipsoid represents the linear transformation whcich takes the n-1 sphere to said ellipsoid.
+		What are linear transformations? Being able to answer this question for yourself on a deep,
+		satisfying level is the entire point of learning linear algebra.
+	</p>
+
+	<p>Finding such an understanding will take work. Hard work. Why should you put that effort in?</p>
+
+	<p>Many people tout linear algebra's practical utility as a good reason to study it. I won't.</p>
+
+	<p>
+		That's not to say linear algebra <em>isn't</em> extraordinarily useful, or that it's
+		applicability to a problem domain you care about can't be <em>your</em> reason for deciding to study
+		it.
+	</p>
+
+	<p>
+		Rather, I've found that opaque promises of future utility simply aren't enough to get students
+		through the slog that is an advanced math class without at least half of them getting lost in
+		the woods along the way.
+	</p>
+
+	<p>
+		Instead we'll take a different tack, developing questions, hunches, and intuition that will
+		carry you through your studies.
+	</p>
+
+	<p>
+		We'll do this by treating linear transformations – the main characters of the story - as black
+		boxes and explore them visually.
+	</p>
+
+	<p>
+		By doing so you'll be able to get a sense of "the big picture" of linear algebra long before you
+		master all the fine details. Hopefully, after having taken this coarse pass, you'll come into
+		the subject with a sense of where things are heading and a head full of questions and mysteries
+		you want to resolve.
+	</p>
+
+	<h2>Vector Spaces</h2>
+
+	<p>
+		To do this, we will need an idea of a vector space. Everything else we will treat as a black
+		box.
+	</p>
+
+	<p>
+		Rather than have two different things, you should have one thing. <em>What is that thing?</em>
+	</p>
+
+	<h2>Scavenger Hunt</h2>
+	<p>See if you can find the following linear transformations</p>
+
+	<p>But how do you do this? How do you give students a taste of what's to come?</p>
+
+	<p>Obviously there are somethings that need to be established</p>
+
+	<p>
+		What if there were a way to get a taste of the rich, mysterious structure of linear
+		transformations
+	</p>
+	<p>
+		Linear transformations map ellipsoids to ellipsoids. Put another way, every ellipsoid centered
+		at the origin corresponds to O(n) worth of linear transformations. Specifically, every ellipsoid
+		centered at the origin accounts for O(n) worth of linear transformations. (why?)
 	</p>
 
 	<p>
@@ -199,7 +260,9 @@
 		<h4>Determinant: {A[0][0] * A[1][1] - A[0][1] * A[1][0]}</h4>
 		<h4>Trace: {A[0][0] + A[1][1]}</h4>
 	</div>
-	<div class="footer">Matthew Danbury is a freelance data interactives developer.</div>
+	<div class="footer">
+		🚧 This draft is a work in progress. Thank you for bearing with the rough edges. 🚧
+	</div>
 </div>
 
 <style>
