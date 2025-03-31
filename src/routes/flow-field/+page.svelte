@@ -30,7 +30,7 @@
 		satisfying level is the entire point of learning linear algebra.
 	</p>
 
-	<p>Finding such an understanding will take work. Hard work. Why should you put that effort in?</p>
+	<p>Finding such an understanding will take work. Hard work. Why should you put in the effort?</p>
 
 	<p>Many people tout linear algebra's practical utility as a good reason to study it. I won't.</p>
 
@@ -58,9 +58,12 @@
 
 	<p>
 		By doing so you'll be able to get a sense of "the big picture" of linear algebra long before you
-		master all the fine details. Hopefully, after having taken this coarse pass, you'll come into
-		the subject with a sense of where things are heading and a head full of questions and mysteries
-		you want to resolve.
+		master all the fine details.
+	</p>
+
+	<p>
+		Hopefully, after having taken this coarse pass, you'll come into the subject with a sense of
+		where things are heading and a head full of questions and mysteries you want to resolve.
 	</p>
 
 	<h2>Vector Spaces</h2>
