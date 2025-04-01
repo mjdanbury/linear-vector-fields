@@ -11,7 +11,8 @@
 </script>
 
 <div class="body">
-	<h1>A Visual Primer on Linear Algebra</h1>
+	<h1>Linear Algebra as a Black Box</h1>
+	<!-- <h1>A Visual Primer on Linear Algebra</h1> -->
 	<div class="sketch">
 		<div class="hero-lg">
 			<LinearVectorField {A} width={550} />
@@ -26,52 +27,48 @@
 	<p>By <a href="https://matthewdanbury.info">Matthew Danbury</a></p>
 
 	<p>
-		What are linear transformations? Being able to answer this question for yourself on a deep,
-		satisfying level is the entire point of learning linear algebra.
-	</p>
-
-	<p>Finding such an understanding will take work. Hard work. Why should you put in the effort?</p>
-
-	<p>Many people tout linear algebra's practical utility as a good reason to study it. I won't.</p>
-
-	<p>
-		That's not to say linear algebra <em>isn't</em> extraordinarily useful, or that it's
-		applicability to a problem domain you care about can't be <em>your</em> reason for deciding to study
-		it.
+		What are linear transformations? What secrets do they hold? Getting deep, satisfying answers to
+		these questions is the point of learning linear algebra – the plot of the story if you will.
 	</p>
 
 	<p>
-		Rather, I've found that opaque promises of future utility simply aren't enough to get students
-		through the slog that is an advanced math class without at least half of them getting lost in
-		the woods along the way.
+		Getting to the end of this story will take work. Hard work. Why should you put in the effort?
 	</p>
 
 	<p>
-		Instead we'll take a different tack, developing questions, hunches, and intuition that will
-		carry you through your studies.
+		Instead of taking the usual tack of touting linear algebra's utility, I want to give you a sense
+		of the "big picture" of the subject and its mysteries.
 	</p>
 
 	<p>
-		We'll do this by treating linear transformations – the main characters of the story - as black
-		boxes and explore them visually.
+		My hope is that by doing this early on, you'll come into your learning with some urgent
+		questions you want resolved and a general sense of where things are heading.
 	</p>
 
 	<p>
-		By doing so you'll be able to get a sense of "the big picture" of linear algebra long before you
-		master all the fine details.
+		Hopefully then, the definitions and theorems you encounter will seem a lot better motivated.
+		Reasonble even.
 	</p>
 
 	<p>
-		Hopefully, after having taken this coarse pass, you'll come into the subject with a sense of
-		where things are heading and a head full of questions and mysteries you want to resolve.
+		We'll do this by treating linear transformations as black boxes and seeing what we can learn
+		about them simply by getting our hands dirty.
 	</p>
 
 	<h2>Vector Spaces</h2>
 
 	<p>
-		To do this, we will need an idea of a vector space. Everything else we will treat as a black
-		box.
+		If linear transformations are the "plot" of linear algebra, vectors and vector spaces are the
+		characters and setting. Before we can get anywhere, we'll need to introduce you to them.
 	</p>
+
+	<p>
+		Up until now, If you had an equation with multiple variables you would view them as living in
+		separate universes. You could picture this as each living in it's own copy of the real number
+		line.
+	</p>
+
+	<p>But the different variables in our equations often have something to do with one another</p>
 
 	<p>
 		Rather than have two different things, you should have one thing. <em>What is that thing?</em>
@@ -80,19 +77,13 @@
 	<h2>Scavenger Hunt</h2>
 	<p>See if you can find the following linear transformations</p>
 
-	<p>But how do you do this? How do you give students a taste of what's to come?</p>
-
-	<p>Obviously there are somethings that need to be established</p>
-
-	<p>
-		What if there were a way to get a taste of the rich, mysterious structure of linear
-		transformations
-	</p>
+	<h2>Gaussians</h2>
 	<p>
 		Linear transformations map ellipsoids to ellipsoids. Put another way, every ellipsoid centered
 		at the origin corresponds to O(n) worth of linear transformations. Specifically, every ellipsoid
 		centered at the origin accounts for O(n) worth of linear transformations. (why?)
 	</p>
+	<p>Gaussians are ellipsoidal!!</p>
 
 	<p>
 		While this learning method works pretty reliably in the classroom, it utterly fails to
