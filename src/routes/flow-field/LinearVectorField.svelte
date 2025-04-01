@@ -40,6 +40,7 @@
 			// Map |cos(angle)| to a color
 			// We'll use a gradient from white (perpendicular) to a saturated color (parallel/antiparallel)
 
+			// TODO - Null space of a matrix is always an eigenspace with eigenvalue 0. The current highlights capture this inconsistently.
 			let saturation = sharpened * 30;
 			let brightness = 100;
 			// let brightness = 100 * (1 - 0.4 * Math.exp(-1 * nullSharpness * Av.mag()));
