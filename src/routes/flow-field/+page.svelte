@@ -11,8 +11,7 @@
 </script>
 
 <div class="body">
-	<h1>Linear Algebra as a Black Box</h1>
-	<!-- <h1>A Visual Primer on Linear Algebra</h1> -->
+	<h1>A Visual Primer on Linear Algebra</h1>
 	<div class="sketch">
 		<div class="hero-lg">
 			<LinearVectorField {A} width={550} />
@@ -74,69 +73,21 @@
 		Rather than have two different things, you should have one thing. <em>What is that thing?</em>
 	</p>
 
-	<h2>Scavenger Hunt</h2>
-	<p>See if you can find the following linear transformations</p>
-
-	<h2>Gaussians</h2>
-	<p>
-		Linear transformations map ellipsoids to ellipsoids. Put another way, every ellipsoid centered
-		at the origin corresponds to O(n) worth of linear transformations. Specifically, every ellipsoid
-		centered at the origin accounts for O(n) worth of linear transformations. (why?)
-	</p>
-	<p>Gaussians are ellipsoidal!!</p>
-
-	<p>
-		While this learning method works pretty reliably in the classroom, it utterly fails to
-		generalize to beyond it. Real life problems don't come with some textbook you can just read
-		further along in. Most anything in life worth doing is novel in some way or another and doing it
-		means leaning on your own careful thinking to frame the problem in a way that makes sense to
-		you, and develop a plan of attack. This sort of careful thinking is a skill unto itself, and one
-		that can be honed with practice. Here, I present a way to offer linear algebra students such an
-		opportunity.
-	</p>
-
-	<p>
-		This might not be the best way to understand what an <em>individual</em> linear transformation
-		does per se but I think it is an extaordinarily good way to look at linear transformations
-		<em>as a whole</em>, and generate the kinds of questions that could chart out a first or second
-		course on the topic.
-	</p>
-
-	<p>
-		A course in Linear Algebra typically starts with defining what a vector space is, and proceedes
-		to charactarize transformations between them.
-	</p>
 	<p>
 		This picture is created by the following "rule" at each point in space, draw the vector that
 		that point is mapped to under A. Some caveats we only sample a finite number of points, and we
 		scale the vectors down to improve visibility (I used tanh to map all magnitudes into a finite
 		interval.)
 	</p>
+
+	<h2>Scavenger Hunt</h2>
 	<p>
-		It has been noted that the way math is discovered and the way math is taught are often nothing
-		alike. Research mathematicians tackle problems through concrete examples, which can help them
-		develop and hone useful abstractions and strategies for proving more general theorems. Yet open
-		any math textbook, and you'll be presented with a slew of abstract definitions and theorems,
-		followed by concrete exercises. On the other hand, research procedes by toying around with
-		concrete examples to tease out and hone, what the most useful abstractions could be.
-	</p>
-	<p>
-		I'm sure some of this is unavoidable. If you want to move at an effective pace, you can't be
-		expected to completely rediscover entire fields that. The downside is that as a student, I would
-		often feel that the definitions I was handed were undermotivated. Answers to questions I hadn't
-		yet asked.
-	</p>
-	<p>
-		Yet when it comes to linear transformations, they are left with matrices — a computational
-		object — and pushing numbers arond with their pencils.
+		If you prefer to just noodle around. Do that. If you'd prefer some more guided exploration see
+		if you can find the following transformations:
 	</p>
 
-	<p>
-		For positive determinant matrices, making an orbit around the origin, either the head or the
-		tail of the arrows are consistently pointed outwards. For negative determinant matrices, they
-		flip. Twice.
-	</p>
-	<p>###################################</p>
+	<h2>Patterns</h2>
+
 	<p>
 		One of the things that this picture shows is what "Linearity" means. Scaling an input (moving
 		along any line through the origin) simply scales the output (sign + magnitude of output vector
@@ -163,21 +114,53 @@
 		space of all linear transformations, and how they relate to their matrix representations.
 	</p>
 
+	<h2>Gaussians</h2>
 	<p>
-		When learning math, you sometimes get the advice that you just need to keep reading. Sometimes,
-		this is a good and practical option but I don't think it really builds the skills you'd need as
-		a research or careful thinker of any breed.
+		Linear transformations map ellipsoids to ellipsoids. Put another way, every ellipsoid centered
+		at the origin corresponds to O(n) worth of linear transformations. Specifically, every ellipsoid
+		centered at the origin accounts for O(n) worth of linear transformations. (why?)
 	</p>
+	<p>Gaussians are ellipsoidal!!</p>
+
+	<h2>Inverses</h2>
+
+	<p>"Can I undo this?" is a very natural question to ask about a transformation</p>
+
 	<p>
-		What I like about this is that by playing around with it, you can generate questions that could
-		"chart a course" for the slog that is an intermediate, proof-based linear algebra class. You see
-		patterns and hopefully crave to distill them into rigorous theorems about the structure inherent
-		to linear maps.
+		Q: what sorts of matrices lack an inverse? What do they look like? Can you explain what's going
+		on?
 	</p>
+
+	<!-- TODO - Interactive where you control the knobs of the matrix. 2x2 inverse is plotted as well -->
+
+	<h2>Compositions</h2>
 	<p>
-		Even better, these pictures allow you to explore questions that could whet your appetite for a
-		followup course in Lie Theory (sometimes reffered to as Matrix Groups). Thats amazing.
+		What if I do one transformation after another? Since the result should be another vector, the
+		composition should itself be a transformation
 	</p>
+
+	<p>
+		This begs the question, are there clever ways to "decompose" a transformation into other
+		transformations? You tell me!
+	</p>
+
+	<p>
+		In algebra, when we have an operation on two things that produces another thing, we call it
+		multiplication. If the operation commutes, we call it addition. Convince yourself that
+		composition of transformations is multiplication. Does it commute? (Yes/No/Sometimes) Can you
+		define a rule for this multiplication?
+	</p>
+
+	<h2>Determinats</h2>
+
+	<p>
+		For positive determinant matrices, making an orbit around the origin, either the head or the
+		tail of the arrows are consistently pointed outwards. For negative determinant matrices, they
+		flip. Twice.
+	</p>
+
+	<p>###################################</p>
+
 	<p>
 		Using small multiples to see how an algorithm like row reduction plays out would be fucking
 		sick. As would decompositions like SVD, Similarity transformations, adjoints, inverses,
@@ -274,9 +257,7 @@
 		padding-top: 15px;
 		border-top: 1px solid black;
 	}
-	.date {
-		text-align: end;
-	}
+
 	.sketch {
 		/* background: orange; */
 		display: flex;
