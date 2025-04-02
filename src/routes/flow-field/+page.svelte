@@ -121,13 +121,18 @@
 		associated with a linear transformation
 	</p>
 
-	<h2>Gaussians</h2>
+	<h2>Determinats</h2>
+
 	<p>
-		Linear transformations map ellipsoids to ellipsoids. Put another way, every ellipsoid centered
-		at the origin corresponds to O(n) worth of linear transformations. Specifically, every ellipsoid
-		centered at the origin accounts for O(n) worth of linear transformations. (why?)
+		For positive determinant matrices, making an orbit around the origin, either the head or the
+		tail of the arrows are consistently pointed outwards. For negative determinant matrices, they
+		flip. Twice.
 	</p>
-	<p>Gaussians are ellipsoidal!!</p>
+
+	<p>
+		Sometimes there are arrows point along the line they were orignally on. Sometimes there aren't.
+		What's up with that?
+	</p>
 
 	<h2>Inverses</h2>
 
@@ -158,13 +163,18 @@
 		define a rule for this multiplication?
 	</p>
 
-	<h2>Determinats</h2>
-
 	<p>
-		For positive determinant matrices, making an orbit around the origin, either the head or the
-		tail of the arrows are consistently pointed outwards. For negative determinant matrices, they
-		flip. Twice.
+		Big hint - How does commutativity relate to the existence and position of regions where new
+		arrows point along the same direction as old?
 	</p>
+
+	<h2>Gaussians</h2>
+	<p>
+		Linear transformations map ellipsoids to ellipsoids. Put another way, every ellipsoid centered
+		at the origin corresponds to O(n) worth of linear transformations. Specifically, every ellipsoid
+		centered at the origin accounts for O(n) worth of linear transformations. (why?)
+	</p>
+	<p>Gaussians are ellipsoidal!!</p>
 
 	<p>###################################</p>
 
