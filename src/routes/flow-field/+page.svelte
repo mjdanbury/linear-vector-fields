@@ -11,7 +11,7 @@
 </script>
 
 <div class="body">
-	<h1>A Visual Primer on Linear Algebra</h1>
+	<h1>All The Questions Linear Algebra Answers</h1>
 	<div class="sketch">
 		<div class="hero-lg">
 			<LinearVectorField {A} width={550} />
@@ -97,6 +97,8 @@
 		If you prefer to just noodle around. Do that. If you'd prefer some more guided exploration see
 		if you can find the following transformations:
 	</p>
+
+	<!-- Note to self - throw some transposes in here! -->
 
 	<h2>Patterns</h2>
 
