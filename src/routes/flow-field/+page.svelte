@@ -62,15 +62,16 @@
 	</p>
 
 	<p>
-		Up until now, If you had an equation with multiple variables you would view them as living in
-		separate universes. You could picture this as each living in it's own copy of the real number
-		line.
+		Vector spaces are fundamentally a way of packaging related information into a single structure.
+		In a world without vector spaces, the variables in our equations would be regarded as separate
+		entities living in separate universes – each a value on its own copy of the real number line.
 	</p>
 
-	<p>But the different variables in our equations often have something to do with one another</p>
-
 	<p>
-		Rather than have two different things, you should have one thing. <em>What is that thing?</em>
+		If you asked: "What if instead, we glued all these number lines together at zero and saw our
+		variables not as n points living on n number lines, but one point living in the n-dimensional
+		space spaned by our glued lines?" said point would be a vector, and the place it lives a vector
+		space.
 	</p>
 
 	<h2>Visualization</h2>
