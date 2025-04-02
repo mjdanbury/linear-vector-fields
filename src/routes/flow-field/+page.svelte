@@ -116,14 +116,9 @@
 	</p>
 	<p>
 		What else can this picture get us. In almost every introduction to linear algebra I've
-		encountered. The trace is sheepishly defined as "the sum of the main diagonal of a matrix". This
+		encountered. The trace is defined as "the sum of the main diagonal of a matrix". This
 		presentation shows how the trace appears naturally as the divergence of the vector field
 		associated with a linear transformation
-	</p>
-	<p>
-		Grant's animations are still the best when it comes to getting intuition about how a single
-		linear transformation plays out. Where this one excels I think is building intution about the
-		space of all linear transformations, and how they relate to their matrix representations.
 	</p>
 
 	<h2>Gaussians</h2>
