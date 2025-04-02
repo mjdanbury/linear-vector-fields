@@ -73,11 +73,23 @@
 		Rather than have two different things, you should have one thing. <em>What is that thing?</em>
 	</p>
 
+	<h2>Visualization</h2>
+
 	<p>
-		This picture is created by the following "rule" at each point in space, draw the vector that
-		that point is mapped to under A. Some caveats we only sample a finite number of points, and we
-		scale the vectors down to improve visibility (I used tanh to map all magnitudes into a finite
-		interval.)
+		Basically. we have a transformation - something that creates new vectors from old. we don't know
+		anything else about it. how can we explore it? one way would be to start seeing what it does on
+		different values. We *could* try it on a handful of values but I'll "suggest" that we could be
+		more systematic about it. If we knew what it did with every value, we would say we would know
+		the full transformation. Obviously, testing every pair of real numbers would take too long. So
+		we'll compromise by testing a regular grid of points instead to see what sort of picture it can
+		give us (sort of like a digital camera).
+	</p>
+
+	<p>
+		Right now you should be thinking that if the information content of the transformation is four
+		parameters and we're using dozens of probes, perhaps we're oversampling? Yes and no. You'd be
+		right in this case but generally speaking, "simple" generators can produce outputs that are
+		difficult to learn.
 	</p>
 
 	<h2>Scavenger Hunt</h2>
